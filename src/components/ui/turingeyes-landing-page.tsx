@@ -13,18 +13,22 @@ type Step = {
 };
 
 function useQuarterCountdown(zone: string = "Europe/Berlin") {
-  function remainingSeconds() {
+  const [seconds, setSeconds] = useState<number>(() => {
     const now = DateTime.now().setZone(zone);
     const end = now.endOf("quarter");
     const secs = end.diff(now, "seconds").seconds;
     return Math.max(0, Math.floor(secs));
-  }
-
-  const [seconds, setSeconds] = useState<number>(() => remainingSeconds());
+  });
 
   useEffect(() => {
+    const computeRemaining = () => {
+      const now = DateTime.now().setZone(zone);
+      const end = now.endOf("quarter");
+      const secs = end.diff(now, "seconds").seconds;
+      return Math.max(0, Math.floor(secs));
+    };
     const id = setInterval(() => {
-      setSeconds(remainingSeconds());
+      setSeconds(computeRemaining());
     }, 1000);
     return () => clearInterval(id);
   }, [zone]);

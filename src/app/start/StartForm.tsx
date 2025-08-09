@@ -48,8 +48,9 @@ export default function StartForm({
         localStorage.setItem("te_images", JSON.stringify(j.images));
       } catch {}
       router.push("/test");
-    } catch (err: any) {
-      setError(err?.message || "Something went wrong");
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Something went wrong";
+      setError(msg);
     } finally {
       setSubmitting(false);
     }

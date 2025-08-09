@@ -3,9 +3,10 @@ import StartForm from "./StartForm";
 import countriesData from "world-countries";
 
 // Build countries list on the server. Uses the 'world-countries' dataset.
+type WorldCountry = { cca2?: string; name?: { common?: string } };
 function getCountries() {
-  const countries = (countriesData as any[])
-    .map((c) => ({ code: String(c.cca2 || "").toUpperCase(), name: c.name?.common as string }))
+  const countries = (countriesData as WorldCountry[])
+    .map((c) => ({ code: String(c.cca2 || "").toUpperCase(), name: String(c.name?.common || "") }))
     .filter((c) => c.code && c.name)
     .sort((a, b) => a.name.localeCompare(b.name));
   return countries as { code: string; name: string }[];

@@ -68,22 +68,32 @@ export async function POST(req: NextRequest) {
     const humanStart = randStart(humanCount ?? 0, humanLimit);
     const aiStart = randStart(aiCount ?? 0, aiLimit);
 
-    const [humansRes, aiRes] = await Promise.all([
-      humanLimit > 0
-        ? supabase
-            .from("images")
-            .select("id, category, image_url")
-            .eq("source_type", "human")
-            .range(humanStart, humanStart + humanLimit - 1)
-        : Promise.resolve({ data: [], error: null } as any),
-      aiLimit > 0
-        ? supabase
-            .from("images")
-            .select("id, category, image_url")
-            .eq("source_type", "ai")
-            .range(aiStart, aiStart + aiLimit - 1)
-        : Promise.resolve({ data: [], error: null } as any),
-    ]);
+    type ImageRow = { id: string; category: string; image_url: string };
+    type SimpleRes<T> = { data: T[] | null; error: unknown | null };
+
+    let humansRes: SimpleRes<ImageRow>;
+    if (humanLimit > 0) {
+      const r = await supabase
+        .from("images")
+        .select("id, category, image_url")
+        .eq("source_type", "human")
+        .range(humanStart, humanStart + humanLimit - 1);
+      humansRes = { data: (r as { data: ImageRow[] | null; error: unknown | null }).data, error: r.error };
+    } else {
+      humansRes = { data: [], error: null };
+    }
+
+    let aiRes: SimpleRes<ImageRow>;
+    if (aiLimit > 0) {
+      const r = await supabase
+        .from("images")
+        .select("id, category, image_url")
+        .eq("source_type", "ai")
+        .range(aiStart, aiStart + aiLimit - 1);
+      aiRes = { data: (r as { data: ImageRow[] | null; error: unknown | null }).data, error: r.error };
+    } else {
+      aiRes = { data: [], error: null };
+    }
 
     if (humansRes.error) console.error("images(human) error", humansRes.error);
     if (aiRes.error) console.error("images(ai) error", aiRes.error);
