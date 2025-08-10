@@ -219,10 +219,10 @@ export function TuringEyesLandingPage() {
         </h1>
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-foreground mb-8 max-w-2xl">
           <span className="block">Can you trust your eyes anymore?</span>
-          <span className="block">We're here to find out.</span>
+          <span className="block">We&#39;re here to find out.</span>
         </h2>
         <p className="text-lg text-muted-foreground mb-12 max-w-3xl leading-relaxed">
-          TuringEyes is a global project to measure how well we, as humans, can spot the difference between real and AI-generated images. It's more than a test; it's a way to sharpen your own "visual AI literacy".
+          TuringEyes is a global project to measure how well we, as humans, can spot the difference between real and AI-generated images. It&#39;s more than a test; it&#39;s a way to sharpen your own &quot;visual AI literacy&quot;.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           <a
@@ -245,17 +245,17 @@ export function TuringEyesLandingPage() {
         <div className="max-w-5xl mx-auto">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              <h3 id="hero-promise" className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground">Here's our promise to you</h3>
+              <h3 id="hero-promise" className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground">Here&#39;s our promise to you</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><span className="font-medium text-foreground">A Fair Challenge:</span> You'll judge images based on pure instinct—no pressure.</li>
+                <li><span className="font-medium text-foreground">A Fair Challenge:</span> You&#39;ll judge images based on pure instinct—no pressure.</li>
                 <li><span className="font-medium text-foreground">Instant Insight:</span> See your score the moment you finish and find out how you compare to others.</li>
-                <li><span className="font-medium text-foreground">Deeper Knowledge:</span> Receive a detailed personal report at the end of the quarter to track your skills.</li>
+                <li><span className="font-medium text-foreground">Deeper Knowledge:</span> Receive a detailed personal report at the end of the quarter.</li>
               </ul>
             </div>
             <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              <h3 className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground">And here's how you contribute to something bigger</h3>
+              <h3 className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground">And here&#39;s how you contribute to something bigger</h3>
               <p className="text-sm text-muted-foreground">
-                We carefully turn your anonymous results into powerful research. By sharing our findings with the world, you're helping everyone better understand—and adapt to—the creative power of artificial intelligence.
+                We carefully turn your anonymous results into powerful research. By sharing our findings with the world, you&#39;re helping everyone better understand—and adapt to—the creative power of artificial intelligence.
               </p>
             </div>
           </div>
@@ -387,7 +387,7 @@ export function TuringEyesLandingPage() {
               <div>
                 <h3 className="font-heading text-lg md:text-xl font-semibold">The Experience</h3>
                 <p className="text-muted-foreground mt-2">
-                  We do this through a simple, engaging test designed to capture your pure intuition. You'll be presented with a series of images without any distractions—just your judgment. This creates a level playing field and ensures the data reflects genuine human perception.
+                  We do this through a simple, engaging test designed to capture your pure intuition. You&#39;ll be presented with a series of images without any distractions—just your judgment. This creates a level playing field and ensures the data reflects genuine human perception.
                 </p>
               </div>
               <div>
