@@ -5,11 +5,18 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
 import { BadgeGroup } from "@/components/base/badges/badge-groups";
+import { HeadlineScore } from "@/components/ui/results/HeadlineScore";
+import { PeerComparison } from "@/components/ui/results/PeerComparison";
+import { CategoryTable } from "@/components/ui/results/CategoryTable";
+import { AnswerGrid } from "@/components/ui/results/AnswerGrid";
 
-type Step = {
+type StepCardProps = {
   number: number;
   title: string;
-  description: string;
+  descriptionPrimary: string;
+  descriptionAltA?: string;
+  descriptionAltB?: string;
+  mobileVariant?: "primary" | "altA" | "altB";
 };
 
 function useQuarterCountdown(zone: string = "Europe/Berlin") {
@@ -43,57 +50,25 @@ function useQuarterCountdown(zone: string = "Europe/Berlin") {
 
   return { days, hours, minutes, seconds: secs, formatted };
 }
+// Report preview replaced by inlined Results components
 
-function ReportPreviewCard() {
-  return (
-    <div className="w-full rounded-2xl border border-border bg-card text-card-foreground shadow-sm p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-heading text-lg font-semibold">Preview of Your Report</h3>
-        <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-          Sample
-        </span>
-      </div>
-      <p className="text-sm text-muted-foreground mb-6">
-        After the test you’ll instantly see your score and how you compare to the global average.
-      </p>
-      <div className="grid gap-4 md:grid-cols-2">
-        <div>
-          <div className="flex items-center justify-between text-sm mb-2">
-            <span>Your Accuracy</span>
-            <span className="font-semibold">80%</span>
-          </div>
-          <div className="h-2 w-full rounded-full bg-muted">
-            <div className="h-2 rounded-full bg-primary" style={{ width: "80%" }} />
-          </div>
-        </div>
-        <div>
-          <div className="flex items-center justify-between text-sm mb-2">
-            <span>Global Average</span>
-            <span className="font-semibold">62%</span>
-          </div>
-          <div className="h-2 w-full rounded-full bg-muted">
-            <div className="h-2 rounded-full bg-foreground/70" style={{ width: "62%" }} />
-          </div>
-        </div>
-        <div className="md:col-span-2">
-          <div className="flex items-center gap-2 text-xs text-muted-foreground">
-            <span className="inline-block h-3 w-3 rounded-sm bg-primary" /> Your score
-            <span className="inline-block h-3 w-3 rounded-sm bg-foreground/70 ml-4" /> Global avg
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function StepCard({ number, title, description }: Step) {
+function StepCard({ number, title, descriptionPrimary, descriptionAltA, descriptionAltB, mobileVariant = "primary" }: StepCardProps) {
   return (
     <div className="rounded-2xl border border-border bg-card text-card-foreground p-6 shadow-sm">
       <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
         {number}
       </div>
       <h3 className="font-semibold">{title}</h3>
-      <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+      <p className="mt-2 text-sm text-muted-foreground">
+        <span className="hidden md:inline">{descriptionPrimary}</span>
+        <span className="md:hidden">
+          {mobileVariant === "altB"
+            ? (descriptionAltB ?? descriptionPrimary)
+            : mobileVariant === "altA"
+            ? (descriptionAltA ?? descriptionPrimary)
+            : descriptionPrimary}
+        </span>
+      </p>
     </div>
   );
 }
@@ -243,12 +218,11 @@ export function TuringEyesLandingPage() {
           TuringEyes
         </h1>
         <h2 className="font-heading text-2xl md:text-3xl font-semibold text-foreground mb-8 max-w-2xl">
-          Test Your Ability to Spot AI-Generated Images
+          <span className="block">Can you trust your eyes anymore?</span>
+          <span className="block">We're here to find out.</span>
         </h2>
         <p className="text-lg text-muted-foreground mb-12 max-w-3xl leading-relaxed">
-          Join thousands of users in the ultimate visual intelligence challenge. Can you distinguish
-          between human creativity and artificial intelligence? Put your perception skills to the
-          test with our curated collection of images.
+          TuringEyes is a global project to measure how well we, as humans, can spot the difference between real and AI-generated images. It's more than a test; it's a way to sharpen your own "visual AI literacy".
         </p>
         <div className="flex flex-col sm:flex-row gap-4 items-center">
           <a
@@ -266,6 +240,42 @@ export function TuringEyesLandingPage() {
         </div>
       </main>
 
+      {/* Hero Promise */}
+      <section aria-labelledby="hero-promise" className="relative z-10 px-6 pb-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <h3 id="hero-promise" className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground">Here's our promise to you</h3>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><span className="font-medium text-foreground">A Fair Challenge:</span> You'll judge images based on pure instinct—no pressure.</li>
+                <li><span className="font-medium text-foreground">Instant Insight:</span> See your score the moment you finish and find out how you compare to others.</li>
+                <li><span className="font-medium text-foreground">Deeper Knowledge:</span> Receive a detailed personal report at the end of the quarter to track your skills.</li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+              <h3 className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground">And here's how you contribute to something bigger</h3>
+              <p className="text-sm text-muted-foreground">
+                We carefully turn your anonymous results into powerful research. By sharing our findings with the world, you're helping everyone better understand—and adapt to—the creative power of artificial intelligence.
+              </p>
+            </div>
+          </div>
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            <div className="rounded-2xl border border-border bg-card p-4 text-center">
+              <div className="font-heading text-2xl md:text-3xl font-semibold text-foreground">40</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Image Pairs</div>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-4 text-center">
+              <div className="font-heading text-2xl md:text-3xl font-semibold text-foreground">10–15</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Minutes</div>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-4 text-center">
+              <div className="font-heading text-2xl md:text-3xl font-semibold text-foreground">100%</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Anonymous</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Report Preview Section */}
       <section aria-labelledby="report-preview" className="relative z-10 px-6 py-12 md:py-16">
         <div className="max-w-5xl mx-auto">
@@ -273,9 +283,19 @@ export function TuringEyesLandingPage() {
             See What You’ll Get
           </h2>
           <p className="text-muted-foreground mb-6">
-            A quick snapshot of your performance, broken down against the global average.
+            A quick snapshot of your performance: headline score, peer comparisons by demographics, a category breakdown, and a sample of your full answer grid.
           </p>
-          <ReportPreviewCard />
+          <div className="relative">
+            {/* Single subtle container without large shadow */}
+            <div className="relative rounded-2xl border border-border bg-card text-card-foreground shadow-sm">
+              <div className="p-4 md:p-8 space-y-8">
+                <HeadlineScore showSampleBadge />
+                <PeerComparison />
+                <CategoryTable />
+                <AnswerGrid preview maxPreviewRows={2} />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       {/* How It Works */}
@@ -288,17 +308,46 @@ export function TuringEyesLandingPage() {
             <StepCard
               number={1}
               title="Quick Onboarding"
-              description="Two fast questions to calibrate your profile (skill & country)."
+              descriptionPrimary="Set up in under a minute. Your answers won’t change the test—everyone gets the same challenge."
+              descriptionAltA="Fast start. A few basics to get you ready. The test is identical for all users."
+              mobileVariant="altA"
             />
             <StepCard
               number={2}
               title="Core Test"
-              description="Decide Human or AI per image, then rate confidence. We record response time invisibly."
+              descriptionPrimary="Swipe right for Human, left for AI. That’s it."
+              descriptionAltA="Right = Human. Left = AI. Simple and fast."
+              descriptionAltB="Decide with a swipe—no sliders, no extra steps."
+              mobileVariant="altB"
             />
             <StepCard
               number={3}
-              title="Results & Upgrade"
-              description="Instant score with global comparison. Save via email/Google and optionally add demographics."
+              title="Optional: More About You"
+              descriptionPrimary="Share a few optional details to unlock a richer, more personalized report."
+              descriptionAltA="Optional extras = deeper insights. Skip anytime."
+              mobileVariant="altA"
+            />
+            <StepCard
+              number={4}
+              title="Initial Report"
+              descriptionPrimary="Get your results instantly after the test— in-progress report."
+              descriptionAltA="Immediate snapshot of your performance, right when you finish."
+              mobileVariant="altA"
+            />
+            <StepCard
+              number={5}
+              title="Full Report"
+              descriptionPrimary="At quarter’s end, receive your full report—everything from the entire period in one view."
+              descriptionAltA="Your complete quarterly summary, delivered at the end of the period."
+              mobileVariant="altA"
+            />
+            <StepCard
+              number={6}
+              title="Come Back Next Period"
+              descriptionPrimary="New quarter, fresh challenge. Come back, swipe again, and track your progress."
+              descriptionAltA="See you next period—same game, sharper you."
+              descriptionAltB="See you next season—same game, sharper you."
+              mobileVariant="altA"
             />
           </div>
         </div>
@@ -310,9 +359,12 @@ export function TuringEyesLandingPage() {
           <h2 id="pubs-title" className="font-heading text-2xl md:text-3xl font-semibold mb-6 text-center">
             Publications
           </h2>
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm text-center">
             <p className="text-sm text-muted-foreground">
-              Curated research and articles about human perception vs. AI-generated imagery. Links coming soon.
+              This is where our data becomes knowledge. This section will house our official findings, from in-depth articles and data analyses to formal publications. We explore the evolving, complex relationship between human perception and artificial intelligence.
+            </p>
+            <p className="text-sm text-muted-foreground mt-3">
+              As we gather and analyze data from thousands of participants, we will publish our key discoveries here. Check back to see the insights you helped create.
             </p>
           </div>
         </div>
@@ -324,11 +376,28 @@ export function TuringEyesLandingPage() {
           <h2 id="about-title" className="font-heading text-2xl md:text-3xl font-semibold mb-4">
             About TuringEyes
           </h2>
-          <p className="text-muted-foreground">
-            TuringEyes is a fast, delightful challenge to measure how well people can distinguish
-            AI-generated from human-made images — while collecting high-quality, privacy-aware data
-            to advance research. No visible timers, just your intuition.
-          </p>
+          <div className="rounded-2xl border border-border bg-card p-6 md:p-8 shadow-sm text-left md:text-center">
+            <div className="max-w-3xl mx-auto space-y-6">
+              <div>
+                <h3 className="font-heading text-lg md:text-xl font-semibold">Our Mission</h3>
+                <p className="text-muted-foreground mt-2">
+                  TuringEyes is a research platform dedicated to understanding one of the most critical new challenges of our time: the blurring line between human and artificial creativity. Our goal is to measure and improve visual AI literacy for everyone.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-heading text-lg md:text-xl font-semibold">The Experience</h3>
+                <p className="text-muted-foreground mt-2">
+                  We do this through a simple, engaging test designed to capture your pure intuition. You'll be presented with a series of images without any distractions—just your judgment. This creates a level playing field and ensures the data reflects genuine human perception.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-heading text-lg md:text-xl font-semibold">Your Contribution</h3>
+                <p className="text-muted-foreground mt-2">
+                  Every test you complete fuels a global study. We are committed to privacy; all data is anonymized and aggregated to produce research-grade insights. In return, you receive an instant analysis of your skills and a comprehensive report each quarter. The collective discoveries are then published to help academics, creators, and the public navigate our shared future.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
       {/* Footer */}
