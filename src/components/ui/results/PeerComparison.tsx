@@ -27,7 +27,7 @@ export const SAMPLE_PEER_COMPARISON: {
     { label: "Your Score", value: 80, tone: "primary" },
     { label: "Global Average", value: 68, tone: "contrast" },
     { label: "By Age Range (25–34)", value: 71, tone: "muted" },
-    { label: "By Education Level (Bachelor's)", value: 70, tone: "muted" },
+    { label: "By Education Level (Bachelor&#39;s)", value: 70, tone: "muted" },
     { label: "By Occupation (Tech/IT)", value: 74, tone: "muted" },
     { label: "By Income Range (50k–100k)", value: 72, tone: "muted" },
   ],

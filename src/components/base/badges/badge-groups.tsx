@@ -106,6 +106,7 @@ const colorClasses: Record<Theme, Record<Color, { root?: string; addon?: string;
 interface BadgeGroupProps {
     children?: string | ReactNode;
     addonText: string;
+    addonPrefix?: ReactNode;
     size?: Size;
     color: Color;
     theme?: Theme;
@@ -120,6 +121,7 @@ interface BadgeGroupProps {
 export const BadgeGroup = ({
     children,
     addonText,
+    addonPrefix,
     size = "md",
     color = "brand",
     theme = "light",
@@ -149,6 +151,7 @@ export const BadgeGroup = ({
                 {children}
 
                 <span className={addonClasses}>
+                    {addonPrefix}
                     {addonText}
 
                     {/* Trailing icon */}
@@ -163,6 +166,7 @@ export const BadgeGroup = ({
         <div className={rootClasses}>
             <span className={addonClasses}>
                 {theme === "modern" && <span className={dotClasses} />}
+                {addonPrefix}
                 {addonText}
             </span>
 

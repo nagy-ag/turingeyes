@@ -203,14 +203,19 @@ export function TuringEyesLandingPage() {
         <div className="mb-8">
           <a href="/start" aria-live="polite" className="inline-block rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
             <BadgeGroup
-              addonText={formatted}
+              addonText="Season Ends In"
+              addonPrefix={
+                <span aria-hidden="true" className="inline-flex h-3 w-3 items-center justify-center rounded-full bg-primary/30 mr-2">
+                  <span className="h-1 w-1 rounded-full bg-primary" />
+                </span>
+              }
               size="lg"
               color="brand"
               theme="light"
               align="leading"
               className="cursor-pointer select-none bg-primary/10 text-primary ring-primary/25 hover:bg-primary/5 [&>span:first-child]:bg-background [&>span:first-child]:ring-primary/30 [&>svg]:text-current"
             >
-              Join the challenge
+              {formatted}
             </BadgeGroup>
           </a>
         </div>
@@ -229,7 +234,7 @@ export function TuringEyesLandingPage() {
             href="/start"
             className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 text-lg font-semibold"
           >
-            Start Testing
+            Test My Eyes Now
           </a>
           <a
             href="#leaderboard"
@@ -280,7 +285,7 @@ export function TuringEyesLandingPage() {
       <section aria-labelledby="report-preview" className="relative z-10 px-6 py-12 md:py-16">
         <div className="max-w-5xl mx-auto">
           <h2 id="report-preview" className="font-heading text-xl md:text-2xl font-semibold mb-4">
-            See What You’ll Get
+            See What You&#39;ll Get
           </h2>
           <p className="text-muted-foreground mb-6">
             A quick snapshot of your performance: headline score, peer comparisons by demographics, a category breakdown, and a sample of your full answer grid.
@@ -308,14 +313,14 @@ export function TuringEyesLandingPage() {
             <StepCard
               number={1}
               title="Quick Onboarding"
-              descriptionPrimary="Set up in under a minute. Your answers won’t change the test—everyone gets the same challenge."
+              descriptionPrimary="Set up in under a minute. Your answers won&#39;t change the test—everyone gets the same challenge."
               descriptionAltA="Fast start. A few basics to get you ready. The test is identical for all users."
               mobileVariant="altA"
             />
             <StepCard
               number={2}
               title="Core Test"
-              descriptionPrimary="Swipe right for Human, left for AI. That’s it."
+              descriptionPrimary="Swipe right for Human, left for AI. That&#39;s it."
               descriptionAltA="Right = Human. Left = AI. Simple and fast."
               descriptionAltB="Decide with a swipe—no sliders, no extra steps."
               mobileVariant="altB"
@@ -337,18 +342,116 @@ export function TuringEyesLandingPage() {
             <StepCard
               number={5}
               title="Full Report"
-              descriptionPrimary="At quarter’s end, receive your full report—everything from the entire period in one view."
-              descriptionAltA="Your complete quarterly summary, delivered at the end of the period."
+              descriptionPrimary="At quarter&#39;s end, receive your full report—everything from the entire season in one view."
+              descriptionAltA="Your complete quarterly summary, delivered at the end of the season."
               mobileVariant="altA"
             />
             <StepCard
               number={6}
-              title="Come Back Next Period"
+              title="Come Back Next Season"
               descriptionPrimary="New quarter, fresh challenge. Come back, swipe again, and track your progress."
-              descriptionAltA="See you next period—same game, sharper you."
+              descriptionAltA="See you next season—same game, sharper you."
               descriptionAltB="See you next season—same game, sharper you."
               mobileVariant="altA"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" aria-labelledby="faq-title" className="relative z-10 px-6 py-16 scroll-mt-24">
+        <div className="max-w-5xl mx-auto">
+          <h2 id="faq-title" className="font-heading text-2xl md:text-3xl font-semibold mb-8 text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="rounded-2xl border border-border bg-card">
+            <ul className="divide-y divide-border" role="list">
+              <li>
+                <details className="group">
+                  <summary className="flex items-center gap-3 p-4 cursor-pointer text-left list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-lg">
+                    <span aria-hidden="true" className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border text-muted-foreground">
+                      <svg className="group-open:hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      <svg className="hidden group-open:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                    <span className="font-medium text-foreground">What exactly is TuringEyes?</span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-0 text-sm md:text-base text-muted-foreground">
+                    TuringEyes is a citizen science project wrapped in a visual challenge. You get to test your ability to distinguish between real, human-made photographs and hyper-realistic AI-generated images. In doing so, you contribute valuable data to research on the evolving relationship between humans and artificial intelligence. Think of it as a game with a real-world impact.
+                  </div>
+                </details>
+              </li>
+
+              <li>
+                <details className="group">
+                  <summary className="flex items-center gap-3 p-4 cursor-pointer text-left list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-lg">
+                    <span aria-hidden="true" className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border text-muted-foreground">
+                      <svg className="group-open:hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      <svg className="hidden group-open:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                    <span className="font-medium text-foreground">How long does the test take? Is it difficult?</span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-0 text-sm md:text-base text-muted-foreground">
+                    The challenge is designed to be quick and engaging, typically taking about 10–15 minutes to complete. There&rsquo;s no timer pressuring you, so you can take as long as you need to inspect each image. It&rsquo;s not about being an expert; it&rsquo;s about exploring your own perception. Anyone can participate!
+                  </div>
+                </details>
+              </li>
+
+              <li>
+                <details className="group">
+                  <summary className="flex items-center gap-3 p-4 cursor-pointer text-left list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-lg">
+                    <span aria-hidden="true" className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border text-muted-foreground">
+                      <svg className="group-open:hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      <svg className="hidden group-open:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                    <span className="font-medium text-foreground">What do you do with my data? Is it anonymous?</span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-0 text-sm md:text-base text-muted-foreground">
+                    <p>Here&rsquo;s our simple promise:</p>
+                    <ul className="mt-2 space-y-2 text-sm md:text-base">
+                      <li><span className="font-medium text-foreground">Your Email:</span> If you provide it, your email is used only to send you your personalized reports. We will never sell your data or send you spam.</li>
+                      <li><span className="font-medium text-foreground">Your Demographic Info:</span> Data like your age or profession is used for two purposes only: 1) To show you fascinating comparisons against your peer groups in your report, and 2) For aggregate, anonymized analysis in our research. We can see what a group does, but never what an individual does.</li>
+                      <li><span className="font-medium text-foreground">Published Research:</span> All data used in any public research is 100% anonymized.</li>
+                    </ul>
+                  </div>
+                </details>
+              </li>
+
+              <li>
+                <details className="group">
+                  <summary className="flex items-center gap-3 p-4 cursor-pointer text-left list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 rounded-lg">
+                    <span aria-hidden="true" className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border text-muted-foreground">
+                      <svg className="group-open:hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 5v14M5 12h14" />
+                      </svg>
+                      <svg className="hidden group-open:block" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14" />
+                      </svg>
+                    </span>
+                    <span className="font-medium text-foreground">What are the &ldquo;seasons&rdquo; you mention?</span>
+                  </summary>
+                  <div className="px-4 pb-4 pt-0 text-sm md:text-base text-muted-foreground">
+                    <p>The world of AI image generation is evolving incredibly fast. A &ldquo;season&rdquo; is a testing period (a quarter) that uses a specific, new set of human and AI images. This allows us to:</p>
+                    <ul className="mt-2 list-disc pl-5 space-y-1">
+                      <li>Keep the challenge fresh and interesting for returning users.</li>
+                      <li>Track how human perception changes over time as AI models get better.</li>
+                    </ul>
+                    <p className="mt-2">When a new season starts, you get to test your skills against the latest and greatest AI technology.</p>
+                  </div>
+                </details>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -435,7 +538,7 @@ export function TuringEyesLandingPage() {
                 <li><a href="#how" className="text-muted-foreground hover:text-primary transition-colors">How It Works</a></li>
                 <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">AI Detection Tips</a></li>
                 <li><a href="#publications" className="text-muted-foreground hover:text-primary transition-colors">Research Papers</a></li>
-                <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
+                <li><a href="#faq" className="text-muted-foreground hover:text-primary transition-colors">FAQ</a></li>
               </ul>
             </div>
             <div>

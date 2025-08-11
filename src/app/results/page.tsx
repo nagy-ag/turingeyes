@@ -25,7 +25,7 @@ function getSampleResults(): ResultsData {
         { label: "Your Score", value: 80, tone: "primary" },
         { label: "Global Average", value: 68, tone: "contrast" },
         { label: "By Age Range (25–34)", value: 71, tone: "muted" },
-        { label: "By Education Level (Bachelor's)", value: 70, tone: "muted" },
+        { label: "By Education Level (Bachelor&#39;s)", value: 70, tone: "muted" },
         { label: "By Occupation (Tech/IT)", value: 74, tone: "muted" },
         { label: "By Income Range (50k–100k)", value: 72, tone: "muted" },
       ],
@@ -86,7 +86,7 @@ export default async function ResultsPage() {
           </div>
           <h1 className="mt-4 text-3xl md:text-5xl font-extrabold tracking-tight">How You Did</h1>
           <p className="mt-3 text-sm md:text-base text-muted-foreground">
-            Here’s your performance overview, how you compare to your peers, and a breakdown by category.
+            Here&#39;s your performance overview, how you compare to your peers, and a breakdown by category.
           </p>
         </div>
 
