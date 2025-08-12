@@ -39,9 +39,6 @@ export default function StartForm({
         participantId: string;
         images: { id: string; image_url: string; category: string }[];
       };
-      if (!j.images || j.images.length === 0) {
-        throw new Error("No images available. Please try again later.");
-      }
       try {
         // Persist for the soon-to-be-built test page
         localStorage.setItem("te_pid", j.participantId);
